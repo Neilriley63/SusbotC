@@ -340,4 +340,4 @@ ASALocalRun/
 healthchecksdb
 
 # App config file
-App.config
+/App.config.xml
