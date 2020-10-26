@@ -18,7 +18,7 @@ namespace SusbotC.Services
 
             _client.Log += Log;
 
-            var token = "NzY5MzgwMTA4MDA2OTgxNjYy.X5OLEA.G_yOJju8hRaJjHTT4rHYprc-R7M";
+            var token = "";
 
             await _client.LoginAsync(TokenType.Bot, token);
             await _client.StartAsync();
