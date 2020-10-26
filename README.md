@@ -9,8 +9,8 @@ This code is heavily influenced by NinjaBot, which is the first Discord bot I co
 
 ## Current goals
 
-1. Figure out token config so I don't accidentally post the private token on the internet again.
-2. Create a "!sus <name>" command that pseudo-randomly generates a response saying something along the lines of "<name> kinda sus" "<command writer> thinks <name> is sus" etc.
+1. Create a "!sus <name>" command that pseudo-randomly generates a response saying something along the lines of "<name> kinda sus" "<command writer> thinks <name> is sus" etc.  
+  Currently all it can reply with is a hardcoded "<name> kinda sus ngl"
 
 ## Future ideas
 
