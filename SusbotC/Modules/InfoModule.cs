@@ -11,7 +11,7 @@ namespace SusbotC.Modules
         [Command("sus")]
         [Summary("Declares someone as sus.")]
         public Task SayAsync([Remainder][Summary("Person who is sus")] string susPerson)
-            => ReplyAsync(susPerson);
+            => ReplyAsync(susPerson + " kinda sus ngl");
 
 
         // ReplyAsync is a method on ModuleBase 
