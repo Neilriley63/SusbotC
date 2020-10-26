@@ -9,7 +9,7 @@ namespace SusbotCCore
         {
             try
             {
-                new SusbotC().MainAsync().GetAwaiter().GetResult();
+                new SusbotC().StartAsync().GetAwaiter().GetResult();
             }
             catch (Exception ex)
             {

@@ -1,35 +1,41 @@
 ﻿using Discord;
+using Discord.Commands;
 using Discord.WebSocket;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace SusbotC.Services
 {
     public class StartupService
     {
-        private CommandHandler _handler;
-        private IConfigurationRoot _config;
-        private DiscordSocketClient _client;
+        private readonly DiscordShardedClient _discord;
+        private readonly CommandService _commands;
+        private readonly IConfigurationRoot _config;
+        private readonly IServiceProvider _services;
 
-        public async Task StartupServiceAsync()
+        public StartupService(IServiceProvider services)
         {
-            _client = new DiscordSocketClient();
-
-            _client.Log += Log;
-
-            var token = "";
-
-            await _client.LoginAsync(TokenType.Bot, token);
-            await _client.StartAsync();
-
-            await Task.Delay(-1);
+            _services = services;
+            _config = _services.GetRequiredService<IConfigurationRoot>();
+            _discord = _services.GetRequiredService<DiscordShardedClient>();
+            _commands = _services.GetRequiredService<CommandService>();
         }
 
-        public Task Log(LogMessage msg)
+        public async Task StartAsync()
         {
-            Console.WriteLine(msg.ToString());
-            return Task.CompletedTask;
+            string discordToken = _config["Token"];
+            if (string.IsNullOrWhiteSpace(discordToken))
+            {
+                throw new Exception("Token missing from config.json! Please enter your token there (root directory)");
+            }
+
+            await _discord.LoginAsync(TokenType.Bot, discordToken);
+            await _discord.StartAsync();
+            await _commands.AddModulesAsync(Assembly.GetEntryAssembly(), _services);
         }
     }
 }
+
