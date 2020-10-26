@@ -1,22 +1,12 @@
-﻿using Discord.Net;
-using Discord;
+﻿using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.IO;
-using System.Collections.Generic;
-using Newtonsoft.Json;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration.Json;
 using Serilog;
-using Serilog.Sinks.File;
-using Serilog.Sinks.SystemConsole;
-using Microsoft;
-using System.Net.Http;
-using System.Linq;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Http;
 using SusbotC.Services;
@@ -25,15 +15,15 @@ namespace SusbotCCore
 {
     public class SusbotC
     {
-        private CommandHandler _handler;
+        //private CommandHandler _handler;
         private IConfigurationRoot _config;
 
         public async Task StartAsync()
         {
             //Create the configuration
-            var _builder = new ConfigurationBuilder();
-                //.setBasePath(AppContext.BaseDirectory)
-                //.AddJsonFile(path: "config.json");
+            var _builder = new ConfigurationBuilder()
+                .SetBasePath(AppContext.BaseDirectory)
+                .AddJsonFile(path: "config.json");
             _config = _builder.Build();
 
             //Configure services
@@ -68,7 +58,7 @@ namespace SusbotCCore
             serviceProvider.GetRequiredService<LoggingService>();
 
             //Start the bot
-            await serviceProvider.GetRequiredService<StartupService>().StartAsync;
+            await serviceProvider.GetRequiredService<StartupService>().StartAsync();
 
             //Load up services
             serviceProvider.GetRequiredService<CommandHandler>();
@@ -81,7 +71,7 @@ namespace SusbotCCore
         private static void ConfigureServices(IServiceCollection services)
         {
             //Add SeriLog
-            services.AddLogging(configure => configure.AddSerilog());
+            //services.AddLogging(configure => configure.AddSerilog());
             //Remove default HttpClient logging as it is extremely verbose
             services.RemoveAll<IHttpMessageHandlerBuilderFilter>();
             //Configure logging level              
