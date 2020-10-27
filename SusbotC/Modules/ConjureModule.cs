@@ -82,12 +82,12 @@ namespace SusbotC.Modules
                 "Pteranodons (https://bit.ly/35FekFQ)",
                 "Riding Horses (https://bit.ly/2FZNu2u)",
                 "Rothes (https://bit.ly/37InWm0)",
-                "Stench Kows ()",
-                "Swarms of Bats ()",
-                "Swarms of Rats ()",
-                "Swarms of Ravens ()",
-                "Velociraptors ()",
-                "Wolves ()"
+                "Stench Kows (https://bit.ly/2HDi5np)",
+                "Swarms of Bats (https://bit.ly/3jxvoCX)",
+                "Swarms of Rats (https://bit.ly/2JaVyyM)",
+                "Swarms of Ravens (https://bit.ly/35zJLlb)",
+                "Velociraptors (https://bit.ly/2HHZI04)",
+                "Wolves (https://bit.ly/37HOunl)"
             };
 
             switch (numberOfAnimals)
@@ -112,8 +112,8 @@ namespace SusbotC.Modules
                     break;
             }
 
-            int danStop = new Random().Next(100);
-            if (danStop == 63)
+            int danStop = new Random().Next(20);
+            if (danStop == 13)
             {
                 animalConjured = "Stop it, Dan.";
             }
