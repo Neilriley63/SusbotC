@@ -28,7 +28,15 @@ namespace SusbotC.Modules
 
             int rand = new Random().Next(0, susSayings.Length);
 
-            susFinal = susSayings[rand];
+            if(susPerson != "help")
+            {
+                susFinal = susSayings[rand];
+            }
+            else
+            {
+                susFinal = "Declare someone sus with the !sus command!\nJust type !sus <name> and the named person will be declared as sus.";
+            }
+            
             
             return susFinal;
         }

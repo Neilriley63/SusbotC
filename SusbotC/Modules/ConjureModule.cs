@@ -107,6 +107,9 @@ namespace SusbotC.Modules
                 case "dan":
                     animalConjured = "You have conjured Dan, fuck that guy";
                     break;
+                case "help":
+                    animalConjured = "This command generated a random conjured animal based on the Conjure Animal spell. The available options are:\n(1) for one CR2 beast\n(2) for two CR1 beasts\n(4) for four CR1/2 beasts\n(8) for eight CR1/4 beasts";
+                    break;
                 default:
                     animalConjured = "Invalid selection, please choose either 1, 2, 4, or 8 conjured animals";
                     break;
