@@ -16,7 +16,7 @@ namespace SusbotC.Services
 
             // Configure a Timer for use
             this._pingTimer = new Timer();
-            this._pingTimer.Interval = 1000 * 170;
+            this._pingTimer.Interval = 1000 * 50;
             this._pingTimer.Elapsed += new ElapsedEventHandler(this.TimeElapsed);
             this._pingTimer.Enabled = true;
 
