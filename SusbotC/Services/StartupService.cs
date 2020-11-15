@@ -15,6 +15,7 @@ namespace SusbotC.Services
         private readonly CommandService _commands;
         private readonly IConfigurationRoot _config;
         private readonly IServiceProvider _services;
+        private PingGoogle _pingGoogle;
 
         public StartupService(IServiceProvider services)
         {
@@ -35,6 +36,7 @@ namespace SusbotC.Services
             await _discord.LoginAsync(TokenType.Bot, discordToken);
             await _discord.StartAsync();
             await _commands.AddModulesAsync(Assembly.GetEntryAssembly(), _services);
+            _pingGoogle = new PingGoogle("127.0.0.1");
         }
     }
 }

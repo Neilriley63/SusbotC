@@ -9,6 +9,7 @@ using Serilog;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Http;
 using SusbotC.Services;
+using System.Net.NetworkInformation;
 
 namespace SusbotCCore
 {
@@ -45,7 +46,8 @@ namespace SusbotCCore
                 .AddSingleton<CommandHandler>()
                 .AddSingleton<StartupService>()
                 //.AddSingleton<GiphyApi>()
-                .AddSingleton<LoggingService>();
+                .AddSingleton<LoggingService>()
+                .AddSingleton<PingGoogle>();
 
             //Add logging      
             ConfigureServices(services);
@@ -61,7 +63,7 @@ namespace SusbotCCore
 
             //Load up services
             serviceProvider.GetRequiredService<CommandHandler>();
-            //serviceProvider.GetRequiredService<UserInteraction>();
+            //serviceProvider.GetRequiredService<UserInteraction>();            
 
             //Block this program until it is closed.
             await Task.Delay(-1);
