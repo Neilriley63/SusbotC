@@ -36,7 +36,7 @@ namespace SusbotC.Services
             await _discord.LoginAsync(TokenType.Bot, discordToken);
             await _discord.StartAsync();
             await _commands.AddModulesAsync(Assembly.GetEntryAssembly(), _services);
-            _pingGoogle = new PingGoogle("127.0.0.1");
+            _pingGoogle = new PingGoogle("www.google.com");
         }
     }
 }
